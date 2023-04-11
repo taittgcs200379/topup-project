@@ -81,9 +81,11 @@ namespace topup_project.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         [Display(Name ="Role")]
+        [Required(ErrorMessage ="Please Choose Role")]
         public string RoleName { get; set; }
         [Display(Name ="Department")]
-        public string DepartmentName { get; set; }
+        [Required(ErrorMessage = "Please Choose Department")]
+        public int DepartmentId { get; set; }
     }
 
     public class ResetPasswordViewModel

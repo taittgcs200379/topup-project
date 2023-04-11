@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<topup_project.Models.Topic>
-
+@Scripts.Render("~/bundles/modernizr")
 @{
     ViewBag.Title = "Index";
 
@@ -8,9 +8,9 @@
 <h2>Topic</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button style="background-color:greenyellow" >@Html.ActionLink("Create New", "Create")</button>
 </p>
-<table class="table">
+<table class="table" style="background-color:skyblue">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -36,9 +36,18 @@
                 @Html.DisplayFor(modelItem => item.LastDeadLine)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                <button style="background-color:yellow">@Html.ActionLink("Edit", "Edit", new { id = item.Id }) </button> 
+                <button style="background-color:springgreen">@Html.ActionLink("Details", "Details", new { id = item.Id })</button> 
+                <button style="background-color:hotpink">@Html.ActionLink("Delete", "Delete", new { id = item.Id }) </button> 
+
+                @if (User.IsInRole("QA manager"))
+                {
+                    <button style="background-color:greenyellow">@Html.ActionLink("Export to Excel", "ExportToExcel", "Ideas", new { topicId = item.Id }, null)</button> 
+
+
+                    <button style="background-color: greenyellow">@Html.ActionLink("Export ZIP", "ExportZIP", "Ideas", new { topicId = item.Id }, null)</button> 
+                }
+
             </td>
         </tr>
     }

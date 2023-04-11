@@ -1,0 +1,27 @@
+﻿@model IEnumerable<topup_project.Models.Department>
+
+    @{
+        ViewBag.Title = "Static";
+        var ideaByDepartment =(List<KeyValuePair<string, int>>) ViewData["ideaByDepartment"];
+    }
+
+    <h2>Static Anlyzis</h2>
+
+    <p>
+       
+    </p>
+    <table class="table" style="background-color:skyblue">
+        <tr>
+            <th>Department</th>
+            <th>Number of Ideas</th>
+        </tr>
+
+        @foreach (var item in ideaByDepartment)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td>@item.Value</td>
+            </tr>
+        }
+
+    </table>

@@ -1,13 +1,15 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: aliceblue;
+﻿.body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    
+    
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-image: url(image/background.jpg)
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -27,6 +29,6 @@ textarea {
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
     background-color: #777;
-    border-color: black;
+    border-color: white;
     
 }

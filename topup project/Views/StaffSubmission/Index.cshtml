@@ -1,0 +1,41 @@
+﻿@model IEnumerable<topup_project.Models.Topic>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Staff Submission</h2>
+
+<table class="table table-responsive" style="background-color:skyblue">
+    <tr >
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstDeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastDeadLine)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstDeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDeadLine)
+            </td>
+            <td>
+                <button style="background-color:lavenderblush">@Html.ActionLink("View Ideas", "Index", "Ideas", new { topicId = item.Id }, null)</button> 
+            </td>
+        </tr>
+    }
+
+</table>

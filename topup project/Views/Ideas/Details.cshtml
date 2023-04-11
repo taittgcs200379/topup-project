@@ -1,0 +1,109 @@
+﻿@model topup_project.Models.Idea
+
+@{
+    ViewBag.Title = "Details";
+    var comments = (List<topup_project.Models.Comment>)ViewData["CommentList"];
+    var topic = (topup_project.Models.Topic)ViewData["topic"];
+
+}
+
+
+<title>Details</title>
+
+<div>
+    <h1>Idea</h1>
+    <hr />
+    <dl class="dl-horizontal" style="background-color:skyblue">
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+ 
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopicId)
+        </dt>
+
+        <dd>
+            @topic.Name
+        </dd>
+
+    </dl>
+
+</div>
+
+
+@if (topic.LastDeadLine >= DateTime.Now)
+{
+    <button>@Html.ActionLink("Like", "Like", "Reacts", new { ideaId = Model.Id}, null) </button>
+
+    <button>@Html.ActionLink("DisLike", "DisLike", "Reacts", new { ideaId = Model.Id}, null)</button>
+
+    <button>@Html.ActionLink("Add Comment", "Create", "Comments", new { ideaId = Model.Id}, null)</button>
+
+
+}
+
+
+
+<div class="nav navbar-nav navbar-right">
+    Number of Like:
+    @ViewBag.NumOfLike |
+    Number of Dislike:
+    @ViewBag.NumOfDisLike
+</div>
+<table class="table" style="background-color:bisque">
+    @foreach (var comment in comments)
+    {
+        <tr>
+            <td>
+
+                @Html.DisplayFor(modelItem => comment.Text)
+
+                -
+
+                @Html.DisplayFor(modelItem => comment.Date)
+
+
+        </tr>
+        
+    }
+
+</table>
+<p>
+
+
+
+
+
+
+
+
+</p>

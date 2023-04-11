@@ -11,6 +11,7 @@ namespace topup_project.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public int DepartmentId { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -44,6 +45,11 @@ namespace topup_project.Models
         public System.Data.Entity.DbSet<topup_project.Models.Category> Categories { get; set; }
 
         public System.Data.Entity.DbSet<topup_project.Models.RoleViewModel> RoleViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<topup_project.Models.Idea> Ideas { get; set; }
+        public System.Data.Entity.DbSet<topup_project.Models.Comment> Comments { get; set; }
+
+        public System.Data.Entity.DbSet<topup_project.Models.React> Reacts { get; set; }
     }
     public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {

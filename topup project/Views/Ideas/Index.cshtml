@@ -1,0 +1,82 @@
+﻿@*@model IEnumerable<topup_project.Models.Idea>*@
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<topup_project.Models.Idea>
+@{
+    ViewBag.Title = "Index";
+    var topic = (topup_project.Models.Topic)ViewData["topic"];
+
+}
+
+<title>Index</title>
+<p></p>
+
+@if (topic.FirstDeadLine >= DateTime.Now)
+{
+
+    <p>
+        <button style="background-color:greenyellow">@Html.ActionLink("Create New", "Create", new { topicId = topic.Id })</button>
+    </p>
+}
+
+
+
+<table class="table" style="background-color:skyblue">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Text)*@
+            Text
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.FilePath)*@
+            File
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.DateTime)*@
+            Date
+        </th>
+
+        <th>
+            @* @Html.DisplayNameFor(model => model.CategoryId) *@
+            Cateory
+        </th>
+        <th>
+            @* @Html.DisplayNameFor(model => model.TopicId)*@
+            Topic
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null && Model.Any())
+    {
+        var i = -1;
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TopicId)
+                    </td>
+                    <td>
+                        <button>@Html.ActionLink("Details", "Details", new { id = item.Id }) </button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+<center>@Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = ViewBag.PageSize, topicId = topic.Id })) </center>

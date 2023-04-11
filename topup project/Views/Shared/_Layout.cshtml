@@ -8,38 +8,85 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top " style="background-color:bisque">
-        <div >
+<body background="~/Content/image/cityimage.jpg" style="background-size:unset">
+    <div class="navbar navbar-inverse navbar-fixed-top " style="background-color: skyblue">
+        <div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Idea", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Idea", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                   
-                    <li>@Html.ActionLink("Role Management", "Index", "Role")</li>
-                    <li>@Html.ActionLink("Department Management", "Index", "Departments")</li>
-                    <li>@Html.ActionLink("Topic Management", "Index", "Topics")</li>
-                    <li>@Html.ActionLink("User Management", "Index", "User")</li>
+                <ul class="nav navbar-nav text ">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (User.IsInRole("QA Coordinator"))
+                    {
+                        <li>@Html.ActionLink("Role Management", "Index", "Role")</li>
+                        <li>@Html.ActionLink("Department Management", "Index", "Departments")</li>
+                        <li>@Html.ActionLink("Topic Management", "Index", "Topics")</li>
+                        <li>@Html.ActionLink("User Management", "Index", "User")</li>
+                        <li>@Html.ActionLink("Category", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("Staff Submission", "Index", "StaffSubmission")</li>
+                        <li>@Html.ActionLink("Static Anlyzis", "Static", "StaffSubmission")</li>
+
+                    }
+                    @if (User.IsInRole("QA manager"))
+                    {
+                        <li>@Html.ActionLink("Role Management", "Index", "Role")</li>
+                        <li>@Html.ActionLink("Department Management", "Index", "Departments")</li>
+                        <li>@Html.ActionLink("Topic Management", "Index", "Topics")</li>
+                        <li>@Html.ActionLink("User Management", "Index", "User")</li>
+                        <li>@Html.ActionLink("Category", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("Staff Submission", "Index", "StaffSubmission")</li>
+                        <li>@Html.ActionLink("Static Anlyzis", "Static", "StaffSubmission")</li>
+
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Role Management", "Index", "Role")</li>
+
+                        <li>@Html.ActionLink("Topic Management", "Index", "Topics")</li>
+                        <li>@Html.ActionLink("User Management", "Index", "User")</li>
+                        <li>@Html.ActionLink("Category", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("Staff Submission", "Index", "StaffSubmission")</li>
+                        
+
+                    }
+
+                    @if (User.IsInRole("Staff"))
+                    {
+                        <li>@Html.ActionLink("Staff Submission", "Index", "StaffSubmission")</li>
+                    }
+
+
                 </ul>
-                
+
                 @Html.Partial("_LoginPartial")
-                
+
             </div>
         </div>
-        
+
     </div>
-    <div class="container body-content">
-        @RenderBody()
-       
+   
+    <br />
+    <br />
+    <br/>
+     <div class="nav navbar-nav navnavbar-left">
+        <image style="width: 100px; height: 100px;" src="@Url.Content("~/Content/image/logo.png")"></image>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    <div class=" container body-content">
+
+
+        @RenderBody()
+
+    </div>
+
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

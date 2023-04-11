@@ -1,0 +1,30 @@
+﻿@model IEnumerable<topup_project.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    var idea = (topup_project.Models.Idea)ViewData["idea"];
+}
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table "style="background-color:skyblue">
+       
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Text)
+
+                -
+
+                @Html.DisplayFor(modelItem => item.Date)
+                <button>@Html.ActionLink("Delete", "Delete", new { id = item.Id }) </button>
+            </td>
+            
+        </tr>
+    }
+    
+    </table>
